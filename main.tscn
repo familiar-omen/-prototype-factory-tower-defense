@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c3sav4dpkj1wv"]
+
+[ext_resource type="Script" uid="uid://baatgxxtlwisr" path="res://grid.gd" id="1_7mycd"]
+[ext_resource type="Texture2D" uid="uid://cvmld2arx6x0f" path="res://Conveyor/Visuals/conveyor_foreground.png" id="2_272bh"]
+[ext_resource type="Script" uid="uid://b3q4sb51lcwir" path="res://input.gd" id="3_5vw27"]
+[ext_resource type="PackedScene" uid="uid://d2yiyypl3uow1" path="res://Structures/spawner.tscn" id="4_kek77"]
+[ext_resource type="PackedScene" uid="uid://dwnypf6b1fmax" path="res://Structures/destroyer.tscn" id="5_4c57u"]
+[ext_resource type="PackedScene" uid="uid://ipbc1gjdo18c" path="res://Conveyor/conveyor.tscn" id="6_efxa6"]
+
+[node name="main" type="Node2D" unique_id=2112369263]
+
+[node name="StructureGrid" type="Node2D" parent="." unique_id=1397370219]
+unique_name_in_owner = true
+script = ExtResource("1_7mycd")
+metadata/_custom_type_script = "uid://baatgxxtlwisr"
+
+[node name="ItemGrid" type="Node2D" parent="." unique_id=551017959]
+unique_name_in_owner = true
+script = ExtResource("1_7mycd")
+metadata/_custom_type_script = "uid://baatgxxtlwisr"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=121277608]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = 198.0
+offset_right = 126.0
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer" unique_id=1054844432]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/HBoxContainer" unique_id=2044171773]
+layout_mode = 2
+texture = ExtResource("2_272bh")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1067017846]
+
+[node name="Input" type="Node" parent="." unique_id=1260518356]
+script = ExtResource("3_5vw27")
+spawner = ExtResource("4_kek77")
+destroyer = ExtResource("5_4c57u")
+conveyor = ExtResource("6_efxa6")

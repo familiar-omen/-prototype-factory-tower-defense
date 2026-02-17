@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dwnypf6b1fmax"]
+
+[ext_resource type="Texture2D" uid="uid://vs0qroi56w84" path="res://icon.svg" id="1_8ircu"]
+[ext_resource type="Script" uid="uid://cjadv1evqhk48" path="res://Structures/destruction_script.gd" id="4_gtegk"]
+
+[node name="Destroyer" type="Node2D" unique_id=474013109]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1925187978]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("1_8ircu")
+flip_v = true
+
+[node name="DestroyLocation" type="Marker2D" parent="." unique_id=62513922]
+
+[node name="Node" type="Node" parent="." unique_id=789840502 node_paths=PackedStringArray("destuction_point")]
+script = ExtResource("4_gtegk")
+destuction_point = NodePath("../DestroyLocation")

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d2yiyypl3uow1"]
+
+[ext_resource type="Texture2D" uid="uid://vs0qroi56w84" path="res://icon.svg" id="1_385wd"]
+[ext_resource type="Script" uid="uid://cffelmiwtqdc5" path="res://Structures/spawn_script.gd" id="2_hkgws"]
+[ext_resource type="PackedScene" uid="uid://blcao84sotukx" path="res://Items/test_item.tscn" id="3_q5yre"]
+
+[node name="Spawner" type="Node2D" unique_id=474013109]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1925187978]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("1_385wd")
+
+[node name="SpawnLocation" type="Marker2D" parent="." unique_id=62513922]
+
+[node name="SpawnScript" type="Node" parent="." unique_id=638401000 node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("2_hkgws")
+spawn_point = NodePath("../SpawnLocation")
+spawn_scene = ExtResource("3_q5yre")

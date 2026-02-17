@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://blcao84sotukx"]
+
+[ext_resource type="Texture2D" uid="uid://b5h8xy1crr57d" path="res://Items/Test_Item.png" id="1_0l3m6"]
+
+[node name="Pole" type="Node2D" unique_id=997548783]
+z_as_relative = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=198976607]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_0l3m6")
