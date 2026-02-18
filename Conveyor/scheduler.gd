@@ -37,31 +37,35 @@ func deregister_insertion(position, node):
 	insertions(position).inserter_list.erase(node)
 	#recalculate_blocks(node.to_schedule.position)
 
-func recalculate_blocks(position):
-	var insertion = insertions(position)
-	var extraction = extractions(position)
+#func recalculate_blocks(conveyor : ConveyorLogic):
+	#conveyor.from_point
+	#conveyor.to_point
 	
-	var can_block = insertion.list.size() > extraction.list.size()
 	
-	if not can_block: return
+	#var insertion = insertions(position)
+	#var extraction = extractions(position)
 	
-	for inserter in insertion.list:
-		var blocker = Blocker.new()
-		blocker.origin = inserter.item_grid.worldToGrid(inserter.to_point.global_position)
-		blocker.grid = inserter.item_grid
-		
-		while inserter:
-			inserter.block = blocker
-			var inputs = insertions(inserter.from_schedule.position).list
-			
-			for s in inputs:
-				if s.block == blocker:
-					blocker.blocking = false
-			
-			if inputs.size() == 1:
-				inserter = inputs[0]
-			else:
-				inserter = null
+	#var can_block = insertion.list.size() > extraction.list.size()
+	#
+	#if not can_block: return
+	#
+	#for inserter in insertion.list:
+		#var blocker = Blocker.new()
+		#blocker.origin = inserter.item_grid.worldToGrid(inserter.to_point.global_position)
+		#blocker.grid = inserter.item_grid
+		#
+		#while inserter:
+			#inserter.block = blocker
+			#var inputs = insertions(inserter.from_schedule.position).list
+			#
+			#for s in inputs:
+				#if s.block == blocker:
+					#blocker.blocking = false
+			#
+			#if inputs.size() == 1:
+				#inserter = inputs[0]
+			#else:
+				#inserter = null
 
 class Blocker:
 	var blocking = true
@@ -70,6 +74,9 @@ class Blocker:
 	
 	func is_blocking():
 		return blocking and grid.get_tile(origin)
+
+class line:
+	pass
 
 class Schedule:
 	var position : Vector2i
@@ -105,7 +112,7 @@ class Schedule:
 						#next = i
 				else:
 					cur.from_schedule.triggers += 1
-			if found:
+			if found == inserter_list[next % count]:
 				next += 1
 	
 	
