@@ -14,13 +14,6 @@ func _init():
 func do_tick():
 	for schedule in schdules.values():
 		schedule.triggers = 1
-		#if schedule.is_end:
-			#schedule.do_tick()
-	
-	
-	pass
-	#for schedule in schdules.values():
-		#schedule.do_requests()
 
 func extractions(position) -> Schedule:
 	return Scheduler.schdules.get_or_add(position, Scheduler.Schedule.new(position))
@@ -81,9 +74,9 @@ class Blocker:
 class Schedule:
 	var position : Vector2i
 	
-	var next_inserter : int = 0
+	var next : int = 0
+	var offset : int = 0
 	var inserter_list : Array = []
-	var next_extractor : int = 0
 	var extractor_list : Array = []
 	
 	var triggers = 0:
@@ -91,66 +84,38 @@ class Schedule:
 			triggers = value
 			if triggers > extractor_list.size():
 				do_tick()
-				triggers = 0
+				triggers = -1000
 	
 	func _init(position):
 		self.position = position
 	
-	var is_end:
-		get: return not extractor_list
-	
 	func do_tick():
+		#if inserter_list.size() == 2:
+			#print(next)
 		if inserter_list:
 			var count = inserter_list.size()
 			var found = null
-			next_inserter %= count
-			for i in range(next_inserter, next_inserter + count):
-				if inserter_list[i % count].is_valid():
+			for i in range(next, next + count):
+				var cur = inserter_list[i % count]
+				if cur.is_valid():
 					if not found:
-						found = inserter_list[i % count]
+						found = cur
 						found.do_tick()
-						next_inserter = i
-						inserter_list[i % count].from_schedule.triggers += 1
+						found.from_schedule.triggers += 1
+						#next = i
 				else:
-					inserter_list[i % count].from_schedule.triggers += 1
-			
-			next_inserter += 1
+					cur.from_schedule.triggers += 1
+			if found:
+				next += 1
 	
 	
-	#func do_requests():
-		#if inserter_list:
-			#next_inserter %= inserter_list.size()
-			#inserter_list[next_inserter].is_valid()
-			#next_extractor += 1
-	#
-	#func open_insertion():
-		#var count = inserter_list.size()
-		#next_inserter %= count
-		#
-		#for i in range(next_inserter, next_inserter + count):
-			#if inserter_list[next_inserter % count].is_valid():
-				#break
-		#
-		#next_extractor += 1
-	
-	
-	
-	
-		#
-		#if extractor_list:
-			#next_extractor %= extractor_list.size()
-			#extractor_list[next_extractor].request_put()
-			#next_extractor += 1
-	#
-	#func
 	
 	func is_turn_of(node) -> bool:
-		if not extractor_list.size(): return false
-		next_extractor %= extractor_list.size()
-		return extractor_list[next_extractor] == node
+		if not extractor_list: return false
+		return extractor_list[(next + offset) % extractor_list.size()] == node
 	
-	func take_turn(node):
-		if extractor_list.size():
-			next_extractor %= extractor_list.size()
-			if extractor_list[next_extractor] == node:
-				next_extractor += 1
+	#func take_turn(node):
+		#if extractor_list:
+			#if extractor_list[(next + offset) % extractor_list.size()] == node:
+				#next += 1
+				

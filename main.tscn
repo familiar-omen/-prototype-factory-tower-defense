@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b3q4sb51lcwir" path="res://input.gd" id="3_5vw27"]
 [ext_resource type="PackedScene" uid="uid://d2yiyypl3uow1" path="res://Structures/spawner.tscn" id="4_kek77"]
 [ext_resource type="PackedScene" uid="uid://dwnypf6b1fmax" path="res://Structures/destroyer.tscn" id="5_4c57u"]
+[ext_resource type="PackedScene" uid="uid://d30ucj5ewpg7s" path="res://Structures/spawner2.tscn" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://ipbc1gjdo18c" path="res://Conveyor/conveyor.tscn" id="6_efxa6"]
 
 [node name="main" type="Node2D" unique_id=2112369263]
@@ -42,9 +43,11 @@ layout_mode = 2
 texture = ExtResource("2_272bh")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1067017846]
+zoom = Vector2(0.59, 0.59)
 
 [node name="Input" type="Node" parent="." unique_id=1260518356]
 script = ExtResource("3_5vw27")
 spawner = ExtResource("4_kek77")
+spawner2 = ExtResource("5_272bh")
 destroyer = ExtResource("5_4c57u")
 conveyor = ExtResource("6_efxa6")
