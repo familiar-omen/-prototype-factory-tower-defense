@@ -10,4 +10,5 @@ func _physics_process(_delta: float) -> void:
 	
 	if item:
 		item_grid.set_tile(tile_pos,  null)
+		await get_tree().create_timer(1).timeout
 		item.queue_free()

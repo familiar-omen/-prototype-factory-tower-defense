@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ipbc1gjdo18c"]
+
+[ext_resource type="Texture2D" uid="uid://wef3gjaja8d0" path="res://Conveyor/Visuals/conveyor_frame.png" id="1_o44um"]
+[ext_resource type="Texture2D" uid="uid://j60bb7d188x2" path="res://Conveyor/Visuals/conveyor_background.png" id="2_o44um"]
+[ext_resource type="Texture2D" uid="uid://cvmld2arx6x0f" path="res://Conveyor/Visuals/conveyor_foreground.png" id="3_swmen"]
+[ext_resource type="Script" uid="uid://4y8u7m8si21s" path="res://Conveyor/conveyor_script.gd" id="4_swmen"]
+
+[node name="Conveyor" type="Node2D" unique_id=1787295219]
+
+[node name="Wall" type="Sprite2D" parent="." unique_id=109126385]
+z_index = -3
+z_as_relative = false
+texture = ExtResource("1_o44um")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1019053099]
+z_index = -2
+z_as_relative = false
+texture = ExtResource("2_o44um")
+
+[node name="Foreground" type="Sprite2D" parent="." unique_id=1751359630]
+z_index = -1
+z_as_relative = false
+texture = ExtResource("3_swmen")
+
+[node name="From" type="Marker2D" parent="." unique_id=1044484347]
+position = Vector2(-64, 0)
+
+[node name="To" type="Marker2D" parent="." unique_id=715595347]
+position = Vector2(64, 0)
+
+[node name="ConveyorScript" type="Node" parent="." unique_id=805471694 node_paths=PackedStringArray("from_point", "to_point")]
+script = ExtResource("4_swmen")
+from_point = NodePath("../From")
+to_point = NodePath("../To")
